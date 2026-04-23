@@ -7,7 +7,12 @@ const sqlite3 = require('sqlite3').verbose();
 const app = express();
 
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'quiz.sqlite');
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'bitte-aendern';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
+
+if (!ADMIN_TOKEN) {
+  console.error('ADMIN_TOKEN fehlt in den Environment-Variablen.');
+  process.exit(1);
+}
 
 fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 
