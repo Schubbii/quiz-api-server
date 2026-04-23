@@ -5,7 +5,7 @@ const fs = require('fs');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'quiz.sqlite');
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'bitte-aendern';
 
