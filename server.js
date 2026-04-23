@@ -14,6 +14,8 @@ if (!fs.existsSync(DB_PATH) && fs.existsSync(SOURCE_DB_PATH)) {
   fs.copyFileSync(SOURCE_DB_PATH, DB_PATH);
 }
 
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
+
 if (!ADMIN_TOKEN) {
   console.error('ADMIN_TOKEN fehlt in den Environment-Variablen.');
   process.exit(1);
