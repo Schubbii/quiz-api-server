@@ -126,9 +126,15 @@ async function mapQuestionRows(rows) {
 
 function requireAdmin(req, res, next) {
   const token = req.header('x-admin-token');
+
+  console.log('--- ADMIN CHECK ---');
+  console.log('Header token:', JSON.stringify(token));
+  console.log('Env token:', JSON.stringify(ADMIN_TOKEN));
+
   if (!token || token !== ADMIN_TOKEN) {
     return res.status(401).json({ error: 'Nicht autorisiert.' });
   }
+
   next();
 }
 
