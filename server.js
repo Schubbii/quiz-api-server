@@ -9,9 +9,10 @@ const app = express();
 const DB_PATH = process.env.DB_PATH || path.join(__dirname, 'data', 'quiz.sqlite');
 const SOURCE_DB_PATH = path.join(__dirname, 'data', 'quiz.sqlite');
 
-console.log('Ersetze Datenbank im Volume...');
-fs.copyFileSync(SOURCE_DB_PATH, DB_PATH);
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN;
+if (!fs.existsSync(DB_PATH) && fs.existsSync(SOURCE_DB_PATH)) {
+  console.log('Kopiere initiale Datenbank ins Volume...');
+  fs.copyFileSync(SOURCE_DB_PATH, DB_PATH);
+}
 
 if (!ADMIN_TOKEN) {
   console.error('ADMIN_TOKEN fehlt in den Environment-Variablen.');
